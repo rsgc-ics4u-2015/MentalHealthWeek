@@ -138,30 +138,36 @@ class Schedule {
         //      - write student selection to the advisor file
         //      - write student selection to the activity file
         
-        // Iterate over the days
-        for (day, selection) in student.selections {
-            
-            // Iterate over the selections in sorted order by rank
-            for (activity, rank) in selection.sorted(by: { $0.value < $1.value } ) { // See http://apple.co/2jyZZCb for details on syntax here
-                
-                // Now slot the student in to the schedule
-                if days[day]![activity]!.assigned < days[day]![activity]!.capacity {
-                    
-                    // Increment the assigned value for this activity
-                    days[day]![activity]!.assigned += 1
-                    
-                    // Assign the student's selection to the advisor file
-                    advisors.assign(student: student.email, with: student.advisor, to: days[day]![activity]!.longname, on: day)
-                    
-                    // Assign the student to this activity's file
-                    assign(student: student.email, to: days[day]![activity]!.filename, on: day)
-                    
-                    // Stop checking possibilities for this day, so stop this for-in loop for activities on this day
-                    break
-                    
-                }
-            }
+        // Process each day
+        findBestFit(for: student.selections["Monday"]!, on: "Monday", for: student.email, with: student.advisor)
+        findBestFit(for: student.selections["Tuesday"]!, on: "Tuesday", for: student.email, with: student.advisor)
+        findBestFit(for: student.selections["Wednesday"]!, on: "Wednesday", for: student.email, with: student.advisor)
+        findBestFit(for: student.selections["Thursday"]!, on: "Thursday", for: student.email, with: student.advisor)
+        findBestFit(for: student.selections["Friday"]!, on: "Friday", for: student.email, with: student.advisor)
 
+    }
+    
+    func findBestFit(for selections : [ActivityShortName : Ranking], on day : String, for student : String, with advisor: String) {
+    
+        // Iterate over the selections in sorted order by rank
+        for (activity, rank) in selections.sorted(by: { $0.value < $1.value } ) { // See http://apple.co/2jyZZCb for details on syntax here
+            
+            // Now slot the student in to the schedule
+            if days[day]![activity]!.assigned < days[day]![activity]!.capacity {
+                
+                // Increment the assigned value for this activity
+                days[day]![activity]!.assigned += 1
+                
+                // Assign the student's selection to the advisor file
+                advisors.assign(student: student, with: advisor, to: days[day]![activity]!.longname, on: day)
+                
+                // Assign the student to this activity's file
+                assign(student: student, to: days[day]![activity]!.filename, on: day)
+                
+                // Stop checking possibilities for this day, so stop this for-in loop for activities on this day
+                break
+                
+            }
         }
 
     }
