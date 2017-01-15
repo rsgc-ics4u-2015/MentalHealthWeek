@@ -17,6 +17,7 @@ guard let reader = LineReader(path: "/Users/russellgordon/survey_response_all_da
 
 // Structures used to process data
 var columnDescriptors : [String] = []
+var columnDescriptorsVerbose : [String]
 
 // Iterate over each line in the file and print to the terminal
 for (number, line) in reader.enumerated() {
@@ -32,6 +33,11 @@ for (number, line) in reader.enumerated() {
         for (column, descriptor) in columnDescriptors.enumerated() {
             print("column \(column) : \(descriptor)")
         }
+        
+    } else if number == 1 {
+        
+        // Get an array of the "long form" column descriptions
+        columnDescriptorsVerbose = line.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: ",")
         
     }
     
