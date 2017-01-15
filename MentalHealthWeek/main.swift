@@ -18,7 +18,7 @@ let advisors = Advisors(path: "/Users/russellgordon/mhw/output/")
 advisors.setupFiles()
 
 // Initialize activity output files
-let schedule = Schedule(path: "/Users/russellgordon/mhw/output/")
+var schedule = Schedule(path: "/Users/russellgordon/mhw/output/")
 schedule.setupFiles()
 
 // Open the input file

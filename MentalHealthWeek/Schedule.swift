@@ -65,7 +65,8 @@ struct Schedule {
         self.days["Thursday"]!["Relaxation"]   = Activity(longname: "Relaxation and drawing in the Chapel with Father Donkin", capacity: 160, filename: "thursday-relaxation.txt")
         self.days["Thursday"]!["Academics"]    = Activity(longname: "Managing academics in the library with Ms. Uhre and Mr. Van Herk", capacity: 30, filename: "thursday-academics.txt")
         self.days["Thursday"]!["Animals"]      = Activity(longname: "Animal therapy by the main office with Ms. Kaye and Mr. Fitzpatrick", capacity: 16, filename: "thursday-animals.txt")
-
+        self.days["Thursday"]!["MathExam"]    = Activity(longname: "Math exam – If you are taking full-year math with Mr. Doerksen Ms. Jessani or Ms. Nichols you must select this option. (Sorry)", capacity: 30, filename: "thursday-mathexam.txt")
+        
         // Set up Friday
         self.days["Friday"] = [:]   // Empty dictionary for Friday to start
         
@@ -121,23 +122,54 @@ struct Schedule {
     }
     
     // Identify a student's selections and then slot them in to the schedule
-    func slot(_ student : Student) {
+    mutating func slot(_ student : Student) {
 
         // - sort the activities for each day for a student by ranking
         // - iterate over days, then activities on a day, and add student to first activity in schedule where assigned < capacity
         //      - update the schedule dictionary to record assignment (increment assigned for the activity by 1)
         //      - write student selection to the advisor file
         //      - write student selection to the activity file
+        
+        // Iterate over the days
         for (day, selection) in student.selections {
             
-            print("====== \(day)")
-            
+            // Iterate over the selections in sorted order by rank
             for (activity, rank) in selection.sorted(by: { $0.value < $1.value } ) { // See http://apple.co/2jyZZCb for details on syntax here
-                print("Activity \(activity), Rank \(rank)")
+                
+                // Now slot the student in to the schedule
+                if days[day]![activity]!.assigned < days[day]![activity]!.capacity {
+                    
+                    // Increment the assigned value for this activity
+                    days[day]![activity]!.assigned += 1
+                    
+                    // Assign the student to this activity's file
+                    assign(student: student.email, to: days[day]![activity]!.filename, on: day)
+                    
+                    // Stop checking possibilities for this day, so stop this for-in loop for activities on this day
+                    break
+                    
+                }
             }
 
         }
 
+    }
+    
+    // Add a student to an activity (write them to the file)
+    private func assign(student : String, to activity: String, on day : String) {
+        
+        // Open a file for this activity
+        guard let writer = LineWriter(path: self.path + activity, appending: true) else {
+            print("Cannot open output file \(activity)) at \(self.path + activity)")
+            exit(0); // cannot open output file
+        }
+        
+        // Write the student email address
+        writer.write(line: "\(student)")
+        
+        // Close the output file
+        writer.close()
+        
     }
 
     
