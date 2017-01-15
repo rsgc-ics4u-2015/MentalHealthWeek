@@ -28,7 +28,6 @@ guard let reader = LineReader(path: "/Users/russellgordon/mhw/survey_response_al
 
 // Structures used to process data
 var columnDescriptors : [String] = []
-var columnDescriptorsVerbose : [String]
 
 // Process each line of the input file
 for (number, line) in reader.enumerated() {
@@ -64,7 +63,7 @@ for (number, line) in reader.enumerated() {
         // Thoughts about approach per line:
         // ✔︎ get the grade from column 9
         // ✔︎ get the advisor from column 10
-        // - write the student currently being processed to the advisor file
+        // ✔︎ write the student currently being processed to the advisor file
         // ✔︎ populate multi-level dictionary with rankings for this student [ String [ String : Integer ] ] ie. [ Day [ ActivityShortName : Ranking ] ]
         // - sort the activities for each day for a student by ranking
         // - iterate over days, then activities on a day, and add student to first activity in schedule where assigned < capacity
