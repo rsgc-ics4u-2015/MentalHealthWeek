@@ -13,13 +13,13 @@ class Advisors {
     
     // MARK: Properties
     var advisors : [ String : String ] = [:]
-    var path : String
+    let path : String
     
     // MARK: Initializer
     init(path : String) {
         
         // Initialize property for path
-        self.path = path
+        self.path = path + "advisors/"
         
         // Set up filenames
         advisors["Bader Shaw"] = "bader-shaw.txt"

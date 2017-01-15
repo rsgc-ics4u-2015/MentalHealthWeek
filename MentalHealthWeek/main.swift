@@ -12,6 +12,10 @@ import Foundation
 let advisors = Advisors(path: "/Users/russellgordon/mhw/output/")
 advisors.setupFiles()
 
+// Initialize activity output files
+let schedule = Schedule(path: "/Users/russellgordon/mhw/output/")
+schedule.setupFiles()
+
 // Open the input file
 guard let reader = LineReader(path: "/Users/russellgordon/mhw/survey_response_all_data_combined_headers.csv") else {
     exit(0); // cannot open file
@@ -55,7 +59,7 @@ for (number, line) in reader.enumerated() {
         //      - assigned
         //      - filename
         // ✔︎ multi-level dictionary for schedule [ String [ String : Activity ] ] i.e. [ Day [ ActivityShortName : Activity ] ]
-        // - initialize all activity output files
+        // ✔︎ initialize all activity output files
         
         // Thoughts about approach per line:
         // - get the grade from column 9

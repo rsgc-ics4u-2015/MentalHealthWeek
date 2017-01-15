@@ -14,9 +14,13 @@ typealias ActivityShortName = String
 struct Schedule {
     
     var days : [Day : [ActivityShortName : Activity]]
+    let path : String
     
-    init() {
+    init(path : String) {
 
+        // Set path for creating files
+        self.path = path + "activities/"
+        
         // Initialize to empty dictionary
         self.days = [:]
 
@@ -77,5 +81,47 @@ struct Schedule {
         self.days["Friday"]!["Massage"]      = Activity(longname: "Massage in the Senior School Office with professional masseuses supervised by Ms. Kaye", capacity: 12, filename: "friday-massage.txt")
         
     }
+    
+    // MARK: Methods
+
+    // Prepare files for later writes of student selections
+    func setupFiles() {
+        
+        // Create all advisor files
+        for (day, activities) in days {
+            
+            for (activityShortName, activity) in activities {
+                
+                // Open a file and write a couple of lines
+                guard let writer = LineWriter(path: self.path + activity.filename, appending: false) else {
+                    print("Cannot open output file for \(activityShortName) on \(day) at \(self.path + activity.filename)")
+                    exit(0); // cannot open output file
+                }
+                
+                // Iterate over the array of column headers and print each element to the output file
+                writer.write(line: "\(day)")
+                var underLine = ""
+                for _ in day.characters {
+                    underLine += "="
+                }
+                writer.write(line: underLine)
+                
+                // Write the activity name
+                writer.write(line: "\(activity.longname)")
+                underLine = ""
+                for _ in activity.longname.characters {
+                    underLine += "-"
+                }
+                writer.write(line: underLine)
+                
+                // Close the output file
+                writer.close()
+            
+            }
+            
+        }
+        
+    }
+
     
 }
