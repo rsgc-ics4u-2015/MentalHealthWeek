@@ -119,6 +119,26 @@ struct Schedule {
         }
         
     }
+    
+    // Identify a student's selections and then slot them in to the schedule
+    func slot(_ student : Student) {
+
+        // - sort the activities for each day for a student by ranking
+        // - iterate over days, then activities on a day, and add student to first activity in schedule where assigned < capacity
+        //      - update the schedule dictionary to record assignment (increment assigned for the activity by 1)
+        //      - write student selection to the advisor file
+        //      - write student selection to the activity file
+        for (day, selection) in student.selections {
+            
+            print("====== \(day)")
+            
+            for (activity, rank) in selection.sorted(by: { $0.value < $1.value } ) { // See http://apple.co/2jyZZCb for details on syntax here
+                print("Activity \(activity), Rank \(rank)")
+            }
+
+        }
+
+    }
 
     
 }

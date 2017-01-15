@@ -65,18 +65,13 @@ for (number, line) in reader.enumerated() {
         // ✔︎ get the advisor from column 10
         // ✔︎ write the student currently being processed to the advisor file
         // ✔︎ populate multi-level dictionary with rankings for this student [ String [ String : Integer ] ] ie. [ Day [ ActivityShortName : Ranking ] ]
-        // - sort the activities for each day for a student by ranking
-        // - iterate over days, then activities on a day, and add student to first activity in schedule where assigned < capacity
-        //      - update the schedule dictionary to record assignment (increment assigned for the activity by 1)
-        //      - write student selection to the advisor file
-        //      - write student selection to the activity file
         // - ALSO: Remember to put ICS4U students at top of list! :)
         var data = line.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: ",")
         var student = Student(dayAndActivities: columnDescriptors, details: data)
         
         // Identify the student whose selections are being processed
         advisors.add(student)
-        
+        schedule.slot(student)        
         
     }
     
