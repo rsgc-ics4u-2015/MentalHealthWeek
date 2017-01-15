@@ -41,14 +41,17 @@ class Advisors {
         advisors["Hart"] = "hart.txt"
         advisors["Hutton"] = "hutton.txt"
         advisors["Kotecha"] = "kotecha.txt"
+        advisors["Jessani"] = "jessani.txt"
         advisors["Lambersky"] = "lambersky.txt"
         advisors["Newton"] = "newton.txt"
         advisors["O'Leary"] = "oleary.txt"
         advisors["Rankin"] = "rankin.txt"
+        advisors["Ruscitti"] = "ruscitti.txt"
         advisors["Seale"] = "seale.txt"
         advisors["Spacie"] = "spacie.txt"
         advisors["Stevens"] = "stevens.txt"
         advisors["Totten"] = "totten.txt"
+        advisors["Uhre"] = "uhre.txt"
         advisors["Van Herk"] = "vanherk.txt"
         advisors["Vivares"] = "vivares.txt"
         
@@ -62,13 +65,13 @@ class Advisors {
         // Create all advisor files
         for (advisor, filename) in advisors {
             
-            // Open a file and write a couple of lines
+            // Open the advisor output file
             guard let writer = LineWriter(path: self.path + filename, appending: false) else {
                 print("Cannot open output file for \(advisor) at \(self.path + filename)")
                 exit(0); // cannot open output file
             }
             
-            // Iterate over the array of column headers and print each element to the output file
+            // Write the advisor name to this file
             writer.write(line: "\(advisor)")
             var underLine = ""
             for _ in advisor.characters {
@@ -80,6 +83,34 @@ class Advisors {
             writer.close()
         }
     
+    }
+    
+    // Add the student being processed to the file
+    func add(_ student : Student) {
+        
+        guard let filename = advisors[student.advisor] else {
+            print("Could not find a provided advisor, \(student.advisor), in the list of advisors.")
+            exit(0)
+        }
+        
+        // Open the advisor output file
+        guard let writer = LineWriter(path: self.path + filename, appending: true) else {
+            print("Cannot open output file for \(student.advisor) at \(self.path + filename)")
+            exit(0); // cannot open output file
+        }
+        
+        // Write the student email to this advisor's file
+        writer.write(line: "")
+        writer.write(line: "\(student.email)")
+        var underLine = ""
+        for _ in student.email.characters {
+            underLine += "-"
+        }
+        writer.write(line: underLine)
+        
+        // Close the output file
+        writer.close()
+        
     }
 
     

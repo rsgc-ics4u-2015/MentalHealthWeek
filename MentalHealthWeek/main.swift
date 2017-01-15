@@ -75,6 +75,10 @@ for (number, line) in reader.enumerated() {
         var data = line.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: ",")
         var student = Student(dayAndActivities: columnDescriptors, details: data)
         
+        // Identify the student whose selections are being processed
+        advisors.add(student)
+        
+        
     }
     
 }

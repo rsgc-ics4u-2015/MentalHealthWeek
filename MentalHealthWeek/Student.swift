@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Student {
+class Student {
     
     // MARK: Properties
     var selections : [Day : [ActivityShortName : Ranking]]

@@ -89,13 +89,13 @@ struct Schedule {
             
             for (activityShortName, activity) in activities {
                 
-                // Open a file and write a couple of lines
+                // Open a file for this activity
                 guard let writer = LineWriter(path: self.path + activity.filename, appending: false) else {
                     print("Cannot open output file for \(activityShortName) on \(day) at \(self.path + activity.filename)")
                     exit(0); // cannot open output file
                 }
                 
-                // Iterate over the array of column headers and print each element to the output file
+                // Write the day
                 writer.write(line: "\(day)")
                 var underLine = ""
                 for _ in day.characters {
