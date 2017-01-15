@@ -54,7 +54,7 @@ for (number, line) in reader.enumerated() {
         //      - capacity
         //      - assigned
         //      - filename
-        // - multi-level dictionary for schedule [ String [ String : Activity ] ] i.e. [ Day [ ActivityShortName : Activity ] ]
+        // ✔︎ multi-level dictionary for schedule [ String [ String : Activity ] ] i.e. [ Day [ ActivityShortName : Activity ] ]
         // - initialize all activity output files
         
         // Thoughts about approach per line:
@@ -67,7 +67,7 @@ for (number, line) in reader.enumerated() {
         //      - update the schedule dictionary to record assignment (increment assigned for the activity by 1)
         //      - write student selection to the advisor file
         //      - write student selection to the activity file
-        // -
+        // - ALSO: Remember to put ICS4U students at top of list! :)
         
     }
     
