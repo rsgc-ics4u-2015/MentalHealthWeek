@@ -8,10 +8,12 @@
 
 import Foundation
 
-// Read the text file (place in your home folder)
-// Path will probably be /Users/student/survey_response_sample.txt
-// Obtain the data file on Haiku, Day 37
-guard let reader = LineReader(path: "/Users/russellgordon/survey_response_all_data_combined_headers.csv") else {
+// Initialize advisor output files
+let advisors = Advisors(path: "/Users/russellgordon/mhw/output/")
+advisors.setupFiles()
+
+// Open the input file
+guard let reader = LineReader(path: "/Users/russellgordon/mhw/survey_response_all_data_combined_headers.csv") else {
     exit(0); // cannot open file
 }
 
@@ -19,7 +21,7 @@ guard let reader = LineReader(path: "/Users/russellgordon/survey_response_all_da
 var columnDescriptors : [String] = []
 var columnDescriptorsVerbose : [String]
 
-// Iterate over each line in the file and print to the terminal
+// Process each line of the input file
 for (number, line) in reader.enumerated() {
     
     // Look for first line and build an array of column descriptors
@@ -44,8 +46,8 @@ for (number, line) in reader.enumerated() {
         // Process a "real data" line
 
         // Thoughts about data structures needed:
-        // - need a dictionary for Advisors [ String : String ] i.e. [ Advisor : Filename ]
-        // - initialize all advisor output files
+        // ✔︎  need a dictionary for Advisors [ String : String ] i.e. [ Advisor : Filename ]
+        // ✔︎  initialize all advisor output files
         // - need a structure for an Activity
         //      - day
         //      - longname
@@ -72,7 +74,7 @@ for (number, line) in reader.enumerated() {
 }
 
 // Open an output file for writing, overwriting any existing data
-guard let writer = LineWriter(path: "/Users/russellgordon/survey_output.txt", appending: false) else {
+guard let writer = LineWriter(path: "/Users/russellgordon/mhw/survey_output.txt", appending: false) else {
     print("Cannot open output file")
     exit(0); // cannot open output file
 }
