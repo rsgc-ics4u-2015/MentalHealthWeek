@@ -10,6 +10,7 @@
 		810816431E2BF81100DCFCF9 /* Advisors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810816421E2BF81100DCFCF9 /* Advisors.swift */; };
 		810816451E2BFC6700DCFCF9 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810816441E2BFC6700DCFCF9 /* Activity.swift */; };
 		810816491E2BFE6600DCFCF9 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810816481E2BFE6600DCFCF9 /* Schedule.swift */; };
+		8108164B1E2C0DFC00DCFCF9 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108164A1E2C0DFC00DCFCF9 /* Student.swift */; };
 		8155C2561E27F9670096FAB3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8155C2551E27F9670096FAB3 /* main.swift */; };
 		8177C0E11E295601000D3528 /* LineReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8177C0E01E295601000D3528 /* LineReader.swift */; };
 		8177C0E31E297332000D3528 /* LineWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8177C0E21E297332000D3528 /* LineWriter.swift */; };
@@ -31,6 +32,7 @@
 		810816421E2BF81100DCFCF9 /* Advisors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Advisors.swift; sourceTree = "<group>"; };
 		810816441E2BFC6700DCFCF9 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		810816481E2BFE6600DCFCF9 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		8108164A1E2C0DFC00DCFCF9 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		8155C2521E27F9670096FAB3 /* MentalHealthWeek */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MentalHealthWeek; sourceTree = BUILT_PRODUCTS_DIR; };
 		8155C2551E27F9670096FAB3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8177C0E01E295601000D3528 /* LineReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineReader.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				810816421E2BF81100DCFCF9 /* Advisors.swift */,
 				810816441E2BFC6700DCFCF9 /* Activity.swift */,
 				810816481E2BFE6600DCFCF9 /* Schedule.swift */,
+				8108164A1E2C0DFC00DCFCF9 /* Student.swift */,
 			);
 			path = MentalHealthWeek;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				810816431E2BF81100DCFCF9 /* Advisors.swift in Sources */,
 				8177C0E31E297332000D3528 /* LineWriter.swift in Sources */,
 				810816491E2BFE6600DCFCF9 /* Schedule.swift in Sources */,
+				8108164B1E2C0DFC00DCFCF9 /* Student.swift in Sources */,
 				8155C2561E27F9670096FAB3 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

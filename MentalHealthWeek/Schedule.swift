@@ -8,9 +8,6 @@
 
 import Foundation
 
-typealias Day = String
-typealias ActivityShortName = String
-
 struct Schedule {
     
     var days : [Day : [ActivityShortName : Activity]]
