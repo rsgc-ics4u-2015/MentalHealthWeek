@@ -48,7 +48,7 @@ for (number, line) in reader.enumerated() {
         // Thoughts about data structures needed:
         // ✔︎  need a dictionary for Advisors [ String : String ] i.e. [ Advisor : Filename ]
         // ✔︎  initialize all advisor output files
-        // - need a structure for an Activity
+        // ✔︎ need a structure for an Activity
         //      - day
         //      - longname
         //      - capacity
