@@ -39,6 +39,34 @@ for (number, line) in reader.enumerated() {
         // Get an array of the "long form" column descriptions
         columnDescriptorsVerbose = line.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: ",")
         
+    } else {
+        
+        // Process a "real data" line
+
+        // Thoughts about data structures needed:
+        // - need a dictionary for Advisors [ String : String ] i.e. [ Advisor : Filename ]
+        // - initialize all advisor output files
+        // - need a structure for an Activity
+        //      - day
+        //      - longname
+        //      - capacity
+        //      - assigned
+        //      - filename
+        // - multi-level dictionary for schedule [ String [ String : Activity ] ] i.e. [ Day [ ActivityShortName : Activity ] ]
+        // - initialize all activity output files
+        
+        // Thoughts about approach per line:
+        // - get the grade from column 9
+        // - get the advisor from column 10
+        // - write the student currently being processed to the advisor file
+        // - populate multi-level dictionary with rankings for this student [ String [ String : Integer ] ] ie. [ Day [ ActivityShortName : Ranking ] ]
+        // - sort the activities for each day for a student by ranking
+        // - iterate over days, then activities on a day, and add student to first activity in schedule where assigned < capacity
+        //      - update the schedule dictionary to record assignment (increment assigned for the activity by 1)
+        //      - write student selection to the advisor file
+        //      - write student selection to the activity file
+        // -
+        
     }
     
 }
