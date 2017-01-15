@@ -112,6 +112,27 @@ class Advisors {
         writer.close()
         
     }
+    
+    // Add the student's selection to the file
+    func assign(student : String, with advisor : String, to activity : String, on day : String) {
+
+        guard let filename = advisors[advisor] else {
+            print("Could not find a provided advisor, \(advisor), in the list of advisors.")
+            exit(0)
+        }
+
+        // Open the file for this advisor
+        guard let writer = LineWriter(path: self.path + filename, appending: true) else {
+            print("Cannot open output file for \(advisor) at \(self.path + filename)")
+            exit(0); // cannot open output file
+        }
+        
+        // Write the day and activity to the file
+        writer.write(line: "\(day) : \(activity)")
+        
+        // Close the output file
+        writer.close()
+    }
 
     
 }

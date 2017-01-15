@@ -8,9 +8,10 @@
 
 import Foundation
 
-struct Schedule {
+class Schedule {
     
     var days : [Day : [ActivityShortName : Activity]]
+    var advisors : Advisors
     let path : String
     
     init(path : String) {
@@ -78,6 +79,10 @@ struct Schedule {
         self.days["Friday"]!["Animals"]      = Activity(longname: "Animal therapy by the main office with Ms. Kaye and Mr. Fitzpatrick", capacity: 16, filename: "friday-animals.txt")
         self.days["Friday"]!["Massage"]      = Activity(longname: "Massage in the Senior School Office with professional masseuses supervised by Ms. Kaye", capacity: 12, filename: "friday-massage.txt")
         
+        // Initialize advisor output files
+        advisors = Advisors(path: "/Users/russellgordon/mhw/output/")
+        advisors.setupFiles()
+        
     }
     
     // MARK: Methods
@@ -122,7 +127,10 @@ struct Schedule {
     }
     
     // Identify a student's selections and then slot them in to the schedule
-    mutating func slot(_ student : Student) {
+    func slot(_ student : Student) {
+
+        // Identify the student who is being slotted in to the schedule
+        advisors.add(student)
 
         // - sort the activities for each day for a student by ranking
         // - iterate over days, then activities on a day, and add student to first activity in schedule where assigned < capacity
@@ -141,6 +149,9 @@ struct Schedule {
                     
                     // Increment the assigned value for this activity
                     days[day]![activity]!.assigned += 1
+                    
+                    // Assign the student's selection to the advisor file
+                    advisors.assign(student: student.email, with: student.advisor, to: days[day]![activity]!.longname, on: day)
                     
                     // Assign the student to this activity's file
                     assign(student: student.email, to: days[day]![activity]!.filename, on: day)

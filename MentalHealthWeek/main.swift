@@ -13,10 +13,6 @@ typealias Day = String
 typealias ActivityShortName = String
 typealias Ranking = Int
 
-// Initialize advisor output files
-let advisors = Advisors(path: "/Users/russellgordon/mhw/output/")
-advisors.setupFiles()
-
 // Initialize activity output files
 var schedule = Schedule(path: "/Users/russellgordon/mhw/output/")
 schedule.setupFiles()
@@ -70,7 +66,6 @@ for (number, line) in reader.enumerated() {
         var student = Student(dayAndActivities: columnDescriptors, details: data)
         
         // Identify the student whose selections are being processed
-        advisors.add(student)
         schedule.slot(student)        
         
     }
